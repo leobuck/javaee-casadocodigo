@@ -3,7 +3,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:body>
-	<h:form prependId="false">
+	<h:form prependId="false" enctype="multipart/form-data">
 		<div>
 			<h:outputLabel value="Titulo" />
 			<h:inputText value="#{adminBooksBean.product.title}" id="titulo" />
@@ -45,6 +45,10 @@
 			<h:inputText value="#{adminBooksBean.product.releaseDate}" 
 				pt:type="date" id="dataLancamento" />
 			<h:message for="dataLancamento" />
+		</div>
+		<div>
+			<h:outputLabel value="Capa do livro" />
+			<h:inputFile id="summary" label="Sumário do livro" value="#{adminBooksBean.summary}" />
 		</div>
 		<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
 	</h:form>
