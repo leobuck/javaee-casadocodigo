@@ -25,31 +25,33 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotBlank
 	@NotNull
 	private String title;
-	
+
 	@NotBlank
 	@NotNull
 	@Length(min = 10)
 	private String description;
-	
+
 	@Min(50)
 	private int numberOfPages;
-	
+
 	@DecimalMin("20")
 	private BigDecimal price;
-	
+
 	@ManyToMany
 	@Size(min = 1)
 	@NotNull
 	private List<Author> authors = new ArrayList<>();
-	
+
 	@NotNull
 	private Calendar releaseDate;
-	
+
 	private String summaryPath;
+
+	private String coverPath;
 
 	public Integer getId() {
 		return id;
@@ -117,6 +119,14 @@ public class Book {
 
 	public void setSummaryPath(String summaryPath) {
 		this.summaryPath = summaryPath;
+	}
+
+	public String getCoverPath() {
+		return coverPath;
+	}
+
+	public void setCoverPath(String coverPath) {
+		this.coverPath = coverPath;
 	}
 
 	@Override
