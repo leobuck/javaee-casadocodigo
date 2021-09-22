@@ -3,7 +3,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:o="http://omnifaces.org/ui">
 	
 	<form accept-charset="UTF-8" jsf:prependId="false"
 		class="section__form js-shipping-address-with-selector"
@@ -23,6 +24,11 @@
 					placeholder="E-mail" size="30"
 					spellcheck="false"
 					type="email" />
+				<o:messages for="email" var="message">
+					<p class="field_error-message">
+						#{message.summary}
+					</p>
+				</o:messages>
 			</div>
 		</div>
 		
@@ -37,6 +43,11 @@
 					jsf:value="#{checkoutBean.systemUser.firstName}"
 					placeholder="Nome" size="30"
 					type="text" />
+				<o:messages for="name" var="message">
+					<p class="field_error-message">
+						#{message.summary}
+					</p>
+				</o:messages>
 			</div>
 			
 			<div class="field field--required">
@@ -46,6 +57,11 @@
 					jsf:value="#{checkoutBean.systemUser.lastName}"
 					placeholder="Sobrenome" size="30"
 					type="text" />
+				<o:messages for="lastName" var="message">
+					<p class="field_error-message">
+						#{message.summary}
+					</p>
+				</o:messages>
 			</div>
 			
 			<div class="field field--required">
@@ -55,6 +71,11 @@
 				jsf:value="#{checkoutBean.systemUser.socialId}"
 				placeholder="999.999.999-99" size="30"
 				type="text" />
+				<o:messages for="socialId" var="message">
+					<p class="field_error-message">
+						#{message.summary}
+					</p>
+				</o:messages>
 			</div>
 			
 			<div class="field field--required"
@@ -75,8 +96,18 @@
 					<f:selectItem itemValue="Colombia"
 						itemLabel="Colombia"/>
 				</select>
+				<o:messages for="country" var="message">
+					<p class="field_error-message">
+						#{message.summary}
+					</p>
+				</o:messages>
 			</div>
 		</div>
+		 <div class="call-to-action">
+      		<input class="btn" name="commit" 
+      			jsf:action="#{checkoutBean.checkout()}" 
+      			type="submit" value="Continuar" />
+    	</div>
 	</form>
 	
 </html>
