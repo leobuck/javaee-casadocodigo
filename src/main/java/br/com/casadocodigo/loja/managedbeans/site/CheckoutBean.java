@@ -10,6 +10,7 @@ import br.com.casadocodigo.loja.daos.SystemUserDAO;
 import br.com.casadocodigo.loja.models.Checkout;
 import br.com.casadocodigo.loja.models.ShoppingCart;
 import br.com.casadocodigo.loja.models.SystemUser;
+import br.com.casadocodigo.loja.services.PaymentGateway;
 
 @Model
 @Path("payment")
@@ -22,20 +23,24 @@ public class CheckoutBean {
 	private CheckoutDAO checkoutDAO;
 	@Inject
 	private ShoppingCart cart;
-	
+	@Inject
+	private PaymentGateway paymentGateway;
+
 	public SystemUser getSystemUser() {
 		return systemUser;
 	}
-	
+
 	public void setSystemUser(SystemUser systemUser) {
 		this.systemUser = systemUser;
 	}
-	
+
 	@Transactional
 	public void checkout() {
 		systemUserDAO.save(systemUser);
-		
+
 		Checkout checkout = new Checkout(systemUser, cart);
 		checkoutDAO.save(checkout);
+
+		paymentGateway.pay(checkout.getValue());
 	}
 }
