@@ -12,7 +12,6 @@ import br.com.casadocodigo.loja.daos.SystemUserDAO;
 import br.com.casadocodigo.loja.models.Checkout;
 import br.com.casadocodigo.loja.models.ShoppingCart;
 import br.com.casadocodigo.loja.models.SystemUser;
-import br.com.casadocodigo.loja.services.PaymentGateway;
 
 @Model
 @Path("payment")
